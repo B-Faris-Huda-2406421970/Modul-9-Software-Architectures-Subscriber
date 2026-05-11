@@ -22,5 +22,9 @@ Gambar RabbitMQ sudah bekerja
 ![RabbitMQ Running](static/rabbitmq_running.png)
 
 ### Task 4
-Gambar pengiriman dan pemrosesan event
+Gambar pengiriman dan pemrosesan event. Disini publisher akan mengirimkan 5 pesan ke RabbitMQ lalu subscriber menerima 5 pesan tersebut seperti yang terlihat pada terminal
 ![Sending and Receiving Event](static/sending_receiving_event.png)
+
+### Task 5
+Gambar spike pada grafik kedua. Disini spike terjadi karena subscriber menerima pesan dari queue dan selesai memprosesnya. Setiap kali subscriber memproses satu pesan, subscriber akan memberikan sinyal "Ack" berupa konfirmasi tanda terima ke RabbitMQ dan memperbolehkan RabbitMQ menghapusnya dari queue.
+![Spike on Second Chart](static/spike.png)
