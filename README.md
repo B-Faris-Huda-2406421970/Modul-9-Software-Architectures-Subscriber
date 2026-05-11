@@ -28,3 +28,7 @@ Gambar pengiriman dan pemrosesan event. Disini publisher akan mengirimkan 5 pesa
 ### Task 5
 Gambar spike pada grafik kedua. Disini spike terjadi karena subscriber menerima pesan dari queue dan selesai memprosesnya. Setiap kali subscriber memproses satu pesan, subscriber akan memberikan sinyal "Ack" berupa konfirmasi tanda terima ke RabbitMQ dan memperbolehkan RabbitMQ menghapusnya dari queue.
 ![Spike on Second Chart](static/spike.png)
+
+### Task 6
+Gambar grafik yang mensimulasikan slow response oleh subscriber. Berdasarkan gambar, dapat dilihat bahwa jumlah angka pada queue adalah 7 yang berarti ada 7 pesan pada queue. Jika kita melihat pada grafik kedua, kecepatan deliver yaitu manual ack (pengiriman pesan dari RabbitMQ ke subscriber) adalah 2 pesan per detik. Sedangkan, kecepatan konfirmasi dari subscriber yaitu consumer ack adalah 1 pesan per detik. Kesimpulannya, ada bottleneck di subscriber yang membuat konfirmasi pesan diterima menjadi lebih lambat dari kecepatan pesan dikirim oleh RabbitMQ. Ini sesuai dengan perubahan kode yang kita lakukan yaitu menambahkan `thread::sleep()` pada `main()` di subscriber. 
+![Slow Response Graph](static/slow_response.png)
