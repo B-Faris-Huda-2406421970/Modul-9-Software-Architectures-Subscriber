@@ -56,3 +56,6 @@ Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu men
 
 3. Gambar chart yang menujukkan bahwa publisher mengirim pesan dan subscriber menerimanya dari dashboard RabbitMQ yang dijalankan di cloud. Ini bisa dilihat dari spike yang berada di ujung kiri chart kedua.
 ![Monitong RabbitMQ on Cloud](static/cloud_monitoring.png)
+
+4. Gambar chart yang mensimulasikan slow subscriber. Disini publisher mengirimkan banyak pesan, tetapi hanya ada satu subscriber yang siap menerima pesan tersebut. Akibatnya, consumer ack kurang mampu mengimbangi manual ack seperti yang dilihat pada chart bagian bawah.
+![Slow Response Graph on Cloud](static/cloud_slowresponse.png)
