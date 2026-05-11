@@ -14,24 +14,24 @@ Advanced Message Queuing Protocol (AMQP) adalah protokol standar terbuka pada ap
 ### Task 2
 ---
 1. How much data your publisher program will send to the message broker in one run?
-Program publisher akan mengirimkan 5 buah pesan ke message broker dalam satu kali eksekusi. Hal ini terlihat dari 5 baris pemanggilan fungsi `p.publish_event()` secara berurutan di dalam fungsi `main()`. Masing-masing fungsi mengirimkan data `UserCreatedEventMessage` untuk pengguna Amir, Budi, Cica, Dira, dan Emir.
+Program publisher akan mengirimkan 5 buah pesan ke message broker dalam satu kali eksekusi. Hal ini terlihat dari 5 baris pemanggilan fungsi `p.publish_event()` secara berurutan di dalam fungsi `main()`. Masing-masing fungsi mengirimkan data `UserCreatedEventMessage` untuk lima pengguna dummy. Lima pengguna dummy tersebut adalah Amir, Budi, Cica, Dira, dan Emir.
 
 2. The url of: "amqp://guest:guest@localhost:5672" is the same as in the subscriber program, what does it mean?
-Artinya program publisher dan subscriber terhubung ke server message broker yang sama yaitu `amqp://guest:guest@localhost:5672`.
+Artinya program publisher dan subscriber terhubung ke server message broker yang sama. Server message broker disini adalah yaitu `amqp://guest:guest@localhost:5672`.
 
 ### Task 3
 ---
-Gambar RabbitMQ sudah bekerja
+Gambar RabbitMQ sudah bekerja. RabbitMQ berjalan di `localhost` dengan port `15672`. Gambar yang ditampilkan adalah dashboard dari RabbitMQ. Di dashobard tersebut, kita bisa melihat jumlah consumers yang terkoneksi, yang dimana 0 disini. Artinya, belum ada consumer yang siap menerima pesan dari antrean di message broker tersebut. Kita juga bisa melakukan monitoring seperti melihat jumlah pesan yang ada pada queue. Monitoring lainnya yang bisa dilakukan adalah melihat apakah consumer mampu mengimbangi publisher dengan memonitor grafik kedua. 
 ![RabbitMQ Running](static/rabbitmq_running.png)
 
 ### Task 4
 ---
-Gambar pengiriman dan pemrosesan event. Disini publisher akan mengirimkan 5 pesan ke RabbitMQ lalu subscriber menerima 5 pesan tersebut seperti yang terlihat pada terminal
+Gambar pengiriman dan pemrosesan event. Awalnya, publisher mengirimkan lima pesan ke RabbitMQ. RabbitMQ menerimanya lalu memasukkannya ke dalam queue atau antrean. Setelah itu, RabbitMQ akan mencari consumer mana saja yang terhubung dengan queue tersebut dan siap menerima pesan. RabbitMQ kemudian mengirimkan pesan tersebut ke setiap consumer yang ada. Subscriber akhirnya menerima lima pesan yang dikirim oleh publisher. Ini bisa dilihat dari terminal subscriber yang menampilkan kelima pesan tersebut.
 ![Sending and Receiving Event](static/sending_receiving_event.png)
 
 ### Task 5
 ---
-Gambar spike pada grafik kedua. Disini spike terjadi karena subscriber menerima pesan dari queue dan selesai memprosesnya. Setiap kali subscriber memproses satu pesan, subscriber akan memberikan sinyal "Ack" berupa konfirmasi tanda terima ke RabbitMQ dan memperbolehkan RabbitMQ menghapusnya dari queue.
+Gambar spike pada grafik kedua. Publisher mengirimkan pesan ke RabbitMQ. Kemudian, RabbitMQ mengirimkan pesan ke subscriber yang siap menerima. Ini ditandai oleh manual ack berup garis merah pada chart bawah yang menandakan bahwa pesan diteruskan ke subscriber. Subscriber menerima pesan dari RabbitMQ. Subscriber memproses pesan tersebut (yaitu menampilkan pesan tersebut ke terminal). Setelah selesai memprosesnya, subscriber memberikan pesan konfirmasi. Ini ditandai dengan consumer ack berupa garis ungu pada chart bawah.
 ![Spike on Second Chart](static/spike.png)
 
 ### Task 6
@@ -41,8 +41,7 @@ Gambar grafik yang mensimulasikan slow response oleh subscriber. Berdasarkan gam
 
 ### Task 7
 ---
-Gambar grafik yang menunjukkan penerimaan pesan menjadi lebih efisien karena tugas menerima pesan dibagi ke 4 subscriber.
-Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu mengimbangi manual ack (garis merah) karena adanya delay response pada subscriber. Sekarang, pada grafik bagian bawah dapat dilihat bahwa consumer ack dapat mengimbangi manual ack karena beban (load) dari pesan-pesan yang ada pada queue dibagi-bagikan ke 4 subscriber tersebut oleh RabbitMQ (load balancing). Akibatnya, agregat dari pesan konfirmasi oleh subscriber menjadi lebih cepat dan mampu mengimbangin kecepatan manual ack.
+Gambar grafik yang menunjukkan penerimaan pesan menjadi lebih efisien karena tugas menerima pesan dibagi ke 4 subscriber. Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu mengimbangi manual ack (garis merah). Ini diakibatkan oleh delay response pada subscriber (`thread::sleep()`). Sekarang, pada grafik bagian bawah dapat dilihat bahwa consumer ack dapat mengimbangi manual ack karena beban (load) dari pesan-pesan yang ada pada queue dibagi-bagikan ke 4 subscriber tersebut oleh RabbitMQ (load balancing). Akibatnya, agregat dari pesan konfirmasi oleh subscriber menjadi lebih cepat dan mampu mengimbangin kecepatan manual ack. Ini merupakan salah satu bentuk dari scaling yaitu horizontal scaling dengan menambah subscriber yang siap menerima pesan. Meskipun masing-masing subscriber punya delay response, ini bisa diatasi dengan menambah jumlah subscriber yang siap menerima pesan sehingga seakan-akan tidak ada delay response.
 ![Multi-subscriber Graph](static/multi_subs.png)
 
 ### Bonus
