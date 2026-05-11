@@ -59,3 +59,6 @@ Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu men
 
 4. Gambar chart yang mensimulasikan slow subscriber. Disini publisher mengirimkan banyak pesan, tetapi hanya ada satu subscriber yang siap menerima pesan tersebut. Akibatnya, consumer ack kurang mampu mengimbangi manual ack seperti yang dilihat pada chart bagian bawah.
 ![Slow Response Graph on Cloud](static/cloud_slowresponse.png)
+
+5. Gambar chart setelah menjalankan 4 subscriber. Disini ada 4 subscriber yang siap menerima pesan sehingga beban yang diterima oleh masing-masing subscriber berkurang. Ini bisa dilihat dari consumer ack yang mampu mengimbangi manual ack pada chart bawah.
+![Multi-Subscriber Graph on Cloud](static/cloud_multisubs.png)
