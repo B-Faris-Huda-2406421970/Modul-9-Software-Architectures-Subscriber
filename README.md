@@ -44,3 +44,9 @@ Gambar grafik yang mensimulasikan slow response oleh subscriber. Berdasarkan gam
 Gambar grafik yang menunjukkan penerimaan pesan menjadi lebih efisien karena tugas menerima pesan dibagi ke 4 subscriber.
 Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu mengimbangi manual ack (garis merah) karena adanya delay response pada subscriber. Sekarang, pada grafik bagian bawah dapat dilihat bahwa consumer ack dapat mengimbangi manual ack karena beban (load) dari pesan-pesan yang ada pada queue dibagi-bagikan ke 4 subscriber tersebut oleh RabbitMQ (load balancing). Akibatnya, agregat dari pesan konfirmasi oleh subscriber menjadi lebih cepat dan mampu mengimbangin kecepatan manual ack.
 ![Multi-subscriber Graph](static/multi_subs.png)
+
+
+### Bonus
+---
+1. Gambar RabbitMQ sudah bekerja. Disini saya menggunakan hosting cloud dari [CloudAMPQ](https://www.cloudamqp.com/) untuk hosting RabbitMQ-nya.
+![RabbitMQ Running on Cloud](static/cloud_rabbitmq.png)
