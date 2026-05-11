@@ -44,3 +44,7 @@ Gambar grafik yang mensimulasikan slow response oleh subscriber. Berdasarkan gam
 Gambar grafik yang menunjukkan penerimaan pesan menjadi lebih efisien karena tugas menerima pesan dibagi ke 4 subscriber.
 Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu mengimbangi manual ack (garis merah) karena adanya delay response pada subscriber. Sekarang, pada grafik bagian bawah dapat dilihat bahwa consumer ack dapat mengimbangi manual ack karena beban (load) dari pesan-pesan yang ada pada queue dibagi-bagikan ke 4 subscriber tersebut oleh RabbitMQ (load balancing). Akibatnya, agregat dari pesan konfirmasi oleh subscriber menjadi lebih cepat dan mampu mengimbangin kecepatan manual ack.
 ![Multi-subscriber Graph](static/multi_subs.png)
+
+### Notes
+---
+Disini saya menggunakan WSL Ubuntu untuk menjalankan kedua program publisher dan subscriber akibat masalah kompabilitas pada package-nya jika dijalankan di Windows. WSL Ubuntu di-run via Terminal pada VSCode.
