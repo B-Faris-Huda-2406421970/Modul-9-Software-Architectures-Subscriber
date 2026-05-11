@@ -9,3 +9,10 @@ Advanced Message Queuing Protocol (AMQP) adalah protokol standar terbuka pada ap
 - ***guest*** yang pertama adalah username
 - ***guest*** yang kedua adalah password
 - ***localhost:5672*** adalah lokasi jaringan dari server broker. ***localhost*** adalah hostname dan ***5672*** adalah port default yang digunakan untuk traffic AMQP.
+
+### Reflection 2
+1. How much data your publisher program will send to the message broker in one run?
+Program publisher akan mengirimkan 5 buah pesan ke message broker dalam satu kali eksekusi. Hal ini terlihat dari 5 baris pemanggilan fungsi `p.publish_event()` secara berurutan di dalam fungsi `main()`. Masing-masing fungsi mengirimkan data `UserCreatedEventMessage` untuk pengguna Amir, Budi, Cica, Dira, dan Emir.
+
+2. The url of: "amqp://guest:guest@localhost:5672" is the same as in the subscriber program, what does it mean?
+Artinya program publisher dan subscriber terhubung ke server message broker yang sama yaitu `amqp://guest:guest@localhost:5672`.
