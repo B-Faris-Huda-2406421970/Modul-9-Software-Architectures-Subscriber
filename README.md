@@ -53,3 +53,6 @@ Sebelumnya, pada grafik bagian bawah, consumer ack (garis ungu) kurang mampu men
 
 2. Gambar penerimaan pesan oleh subscriber. Dapat dilihat dari sini bahwa pesan dari publisher berhasil dikirim ke RabbitMQ yang dijalankan di cloud. RabbitMQ kemudian mengirim pesan ke listener-nya yaitu program subscriber. Pesan diterima oleh subscriber dan diproses seperti yang terlihat pada terminal.
 ![Receiving Messages from Cloud](static/cloud_receiving.png)
+
+3. Gambar chart yang menujukkan bahwa publisher mengirim pesan dan subscriber menerimanya dari dashboard RabbitMQ yang dijalankan di cloud. Ini bisa dilihat dari spike yang berada di ujung kiri chart kedua.
+![Monitong RabbitMQ on Cloud](static/cloud_monitoring.png)
