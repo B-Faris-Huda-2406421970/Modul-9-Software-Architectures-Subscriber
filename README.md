@@ -20,3 +20,7 @@ Artinya program publisher dan subscriber terhubung ke server message broker yang
 ### Task 3
 Gambar RabbitMQ sudah bekerja
 ![RabbitMQ Running](static/rabbitmq_running.png)
+
+### Task 4
+Gambar pengiriman dan pemrosesan event
+![Sending and Receiving Event](static/sending_receiving_event.png)
